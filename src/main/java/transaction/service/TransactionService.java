@@ -15,6 +15,10 @@ public class TransactionService {
 
     // Create a Transaction
     public Transaction createTransaction(Transaction transaction) {
+        Transaction existingDesc=repository.findByDescription(transaction.getDescription());
+        if(existingDesc!=null){ //description exists
+            return null;
+        }
         Transaction newTransaction = new Transaction(transaction.getDescription(), transaction.getAmount());
         return repository.save(newTransaction);
     }
