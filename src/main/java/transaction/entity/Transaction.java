@@ -6,6 +6,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Entity
@@ -16,19 +18,22 @@ public class Transaction {
 
     private String description;
     private double amount;
-    private LocalDate transactionDate;
+    private String transactionDate;
 
     public Transaction(String description, double amount) {
         this.description = description;
         this.amount = amount;
-        this.transactionDate = LocalDate.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        this.transactionDate = LocalDateTime.now().format(formatter);
     }
 
     public Transaction() {
     }
 
-    public int getId() {
-        return id;
+    public String updateDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        return LocalDateTime.now().format(formatter);
     }
 
     public String getDescription() {
@@ -39,14 +44,6 @@ public class Transaction {
         return amount;
     }
 
-    public LocalDate getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setDescription(String description) {
         this.description = description;
     }
@@ -55,9 +52,7 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setTransactionDate(LocalDate transactionDate) {
+    public void setTransactionDate(String transactionDate) {
         this.transactionDate = transactionDate;
     }
-
-
 }

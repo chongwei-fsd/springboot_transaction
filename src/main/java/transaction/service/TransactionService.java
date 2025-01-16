@@ -34,16 +34,18 @@ public class TransactionService {
     }
 
     // Update an existing transaction
-//    public Transaction updateTransaction(int id,Transaction updatedTransaction){
-//        return repository.findById(id)
-//                .map(t->{
-//                    t.setDescription(updatedTransaction.getDescription());
-//                    t.setAmount(updatedTransaction.getAmount());
-//                    t.setTransactionDate(updatedTransaction.getTransactionDate());
-//                    return repository.save(t);
-//                }).orElse(null);
-//
-//    }
+    public Transaction updateTransaction(int id,Transaction updatedTransaction){
+        return repository.findById(id)
+                .map(t->{
+                    t.setDescription(updatedTransaction.getDescription());
+                    t.setAmount(updatedTransaction.getAmount());
+                    t.setTransactionDate(updatedTransaction.updateDate());
+                    return repository.save(t);
+                }).orElse(null);
+
+
+
+    }
 
     // Delete a Transaction
     public boolean deleteTransaction(int id) {
