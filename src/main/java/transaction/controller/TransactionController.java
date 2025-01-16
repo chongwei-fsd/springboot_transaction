@@ -17,7 +17,7 @@ public class TransactionController {
 
     //create a transaction
     @PostMapping
-    public ResponseEntity<Transaction>createTransaction(@RequestBody Transaction transaction){
+    public ResponseEntity<Transaction> createTransaction(@RequestBody Transaction transaction) {
         return new ResponseEntity<>(transactionService.createTransaction(transaction), HttpStatus.CREATED);
     }
 
@@ -29,33 +29,38 @@ public class TransactionController {
 
     // Get a single transaction by id
     @GetMapping("/{id}")
-    public ResponseEntity<Transaction>getTransactionById(@PathVariable int id){
-        Transaction transaction=transactionService.getTransactionById(id);
-        return transaction!=null
-                ?ResponseEntity.ok(transaction)
-                :ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    public ResponseEntity<Transaction> getTransactionById(@PathVariable int id) {
+        Transaction transaction = transactionService.getTransactionById(id);
+        return transaction != null //if exists
+                ? ResponseEntity.ok(transaction)
+                : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
     // update a transaction
     @PutMapping("/{id}")
-    public ResponseEntity<Transaction>updateTransaction(@PathVariable int id,@RequestBody Transaction updatedTransaction){
-        Transaction transaction=transactionService.updateTransaction(id,updatedTransaction);
-        return transaction!=null
-                ?ResponseEntity.ok(transaction)
-                :ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
-
-    // Delete a transaction
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteTransaction(@PathVariable int id) {
-        boolean isDeleted = transactionService.deleteTransaction(id);
-        return isDeleted
-                ? ResponseEntity.noContent().build()
+    public ResponseEntity<Transaction> updateTransaction(@PathVariable int id, @RequestBody Transaction updatedTransaction) {
+        Transaction transaction = transactionService.updateTransaction(id, updatedTransaction);
+        return transaction != null
+                ? ResponseEntity.ok(transaction)
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    // Delete a transaction
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<String> deleteTransaction(@PathVariable int id) {
+//        boolean isDeleted = transactionService.deleteTransaction(id);
+//        return isDeleted
+//                ? ResponseEntity.noContent().build()
+//                : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//    }
 
-
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTransaction(@PathVariable int id) {
+        boolean isDeleted = transactionService.deleteTransaction(id);
+        return isDeleted
+                ? ResponseEntity.ok("Transaction deleted successfully.")
+                : ResponseEntity.status(HttpStatus.NOT_FOUND).body("Transaction not found.");
+    }
 
 
 }
