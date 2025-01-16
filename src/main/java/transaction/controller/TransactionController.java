@@ -37,13 +37,13 @@ public class TransactionController {
     }
 
     // update a transaction
-    @PutMapping("/{id}")
-    public ResponseEntity<Transaction>updateTransaction(@PathVariable int id,@RequestBody Transaction updatedTransaction){
-        Transaction transaction=transactionService.updateTransaction(id,updatedTransaction);
-        return transaction!=null
-                ?ResponseEntity.ok(transaction)
-                :ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Transaction>updateTransaction(@PathVariable int id,@RequestBody Transaction updatedTransaction){
+//        Transaction transaction=transactionService.updateTransaction(id,updatedTransaction);
+//        return transaction!=null
+//                ?ResponseEntity.ok(transaction)
+//                :ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//    }
 
     // Delete a transaction
     @DeleteMapping("/{id}")
