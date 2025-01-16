@@ -12,8 +12,15 @@ public class TransactionService {
     @Autowired
     private TransactionRepository repository;
 
-    // Create or Update a Transaction
+    // Create a Transaction
     public Transaction saveTransaction(Transaction transaction) {
         return repository.save(transaction);
     }
+
+    // Get all transactions
+    public List<Transaction> getAllTransactions() {
+        return repository.findAll();
+    }
+
+
 }
