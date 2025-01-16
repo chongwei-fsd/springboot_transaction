@@ -5,5 +5,5 @@ import transaction.entity.Transaction;
 
 
 public interface TransactionRepository extends JpaRepository<Transaction,Integer> {
-
+    Transaction findByDescription(String desc);
 }
