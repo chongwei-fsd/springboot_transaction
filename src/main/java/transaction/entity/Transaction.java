@@ -31,9 +31,9 @@ public class Transaction {
     public Transaction() {
     }
 
-    public String updateDate(){
+    public void updateDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        return LocalDateTime.now().format(formatter);
+        this.transactionDate = LocalDateTime.now().format(formatter);
     }
 
     public String getDescription() {
