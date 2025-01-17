@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import transaction.entity.Transaction;
 import transaction.repository.TransactionRepository;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,8 +16,8 @@ public class TransactionService {
 
     // Create a Transaction
     public Transaction createTransaction(Transaction transaction) {
-        Transaction existingDesc=repository.findByDescription(transaction.getDescription());
-        if(existingDesc!=null){ //description exists
+        Transaction existingDesc = repository.findByDescription(transaction.getDescription());
+        if (existingDesc != null) { //description exists
             return null;
         }
         Transaction newTransaction = new Transaction(transaction.getDescription(), transaction.getAmount());
@@ -40,7 +41,7 @@ public class TransactionService {
                 .map(t -> {
                     t.setDescription(updatedTransaction.getDescription());
                     t.setAmount(updatedTransaction.getAmount());
-                    t.setTransactionDate(updatedTransaction.updateDate());
+                    t.updateDate();
                     return repository.save(t);
                 }).orElse(null);
     }
