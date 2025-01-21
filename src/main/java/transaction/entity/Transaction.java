@@ -40,6 +40,10 @@ public class Transaction {
         return description;
     }
 
+    public String getTransactionDate(){
+        return transactionDate;
+    }
+
     public double getAmount() {
         return amount;
     }
