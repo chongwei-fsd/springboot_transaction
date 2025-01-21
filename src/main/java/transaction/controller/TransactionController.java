@@ -45,6 +45,7 @@ public class TransactionController {
                 : ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
+    // delete a transaction
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteTransaction(@PathVariable int id) {
         boolean isDeleted = transactionService.deleteTransaction(id);
